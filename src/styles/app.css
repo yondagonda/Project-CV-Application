@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 *,
 *::before,
 *::after {
@@ -9,7 +8,11 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: rgb(243, 243, 243);
 }
 /* :root {
   --clr-primary: rgb(64, 64, 235);
@@ -18,14 +21,25 @@
   --ff-secondary: Arial, Helvetica, sans-serif;
 } */
 
+footer {
+  background-color: rgb(31, 30, 30);
+  color: white;
+  text-align: center;
+  font-size: 1.3em;
+  padding: 0.8em;
+}
+
 .app {
-  display: flex;
-  gap: 5em;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2em;
+  padding: 1em;
 }
 
 main {
   padding: 2em;
   border: 1px solid black;
+  background-color: white;
 }
 
 section {
@@ -34,12 +48,32 @@ section {
 }
 
 .preview-area {
-  border: 1px solid black;
-  padding: 2em;
-  min-width: 400px;
-  /* temporary setting above, for visual purposes */
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-color: white;
+  border-radius: 6px;
+  display: grid;
+  grid-template-rows: 1fr 4fr;
+  height: 842px;
+  /* the above height is the size of an a4 paper, width should be 595px */
+}
+
+.top-level {
+  padding: 1em;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+}
+
+.preview-main {
+  padding: 1em;
 }
 
 .title {
+  font-weight: bold;
+  font-size: 3em;
+  word-break: break-word;
+  padding: 0.4em 0.3em;
+}
+
+.small {
   font-weight: bold;
 }
