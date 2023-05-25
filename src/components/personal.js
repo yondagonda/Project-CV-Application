@@ -12,18 +12,17 @@ export default function Personal(props) {
       <div className="title">{nameInput.text}</div>
       <div className="top-right largestFS">
         <div className="email-container">
-          <img src={mailIcon} class="mail-icon" alt="mail icon" />
+          <img src={mailIcon} className="mail-icon" alt="mail icon" />
           <div>{emailInput.text}</div>
         </div>
         <div className="phone-container">
-          <img src={phoneIcon} class="phone-icon" alt="phone icon" />
+          <img src={phoneIcon} className="phone-icon" alt="phone icon" />
           <div>{phoneInput.text}</div>
         </div>
         <div className="address-container">
-          <img src={addressIcon} class="address-icon" alt="adress icon" />
-          <div>add{addressInput.text}</div>
+          <img src={addressIcon} className="address-icon" alt="adress icon" />
+          <div>{addressInput.text}</div>
         </div>
-        {/* replace all these values with their respective symbols instead */}
       </div>
     </>
   );

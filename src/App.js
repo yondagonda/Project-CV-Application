@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import app from './styles/app.css';
 import Personal from './components/personal';
 import Education from './components/education';
-import Experience from './components/experience';
+import { Experience, AddExperienceToForm } from './components/experience';
 import { Skills, SkillsForm } from './components/skills';
 import uniqid from 'uniqid';
 
@@ -19,12 +19,18 @@ class App extends Component {
       titleOfStudy: { text: '' },
       lengthOfStudy: { text: '' },
       eduCity: { text: '' },
-      companyName: { text: '' },
-      cityName: { text: '' },
-      positionTitle: { text: '' },
-      taskDescription: { text: '' },
-      startDate: { text: '' },
-      endDate: { text: '' },
+      experienceInput: {
+        companyName: { text: '' },
+        cityName: { text: '' },
+        positionTitle: { text: '' },
+        taskDescription: { text: '' },
+        startDate: { text: '' },
+        endDate: { text: '' },
+        id: uniqid(),
+        editItem: false,
+        presentChecked: false,
+      },
+      allExperiences: [],
       skillInput: { text: '', id: uniqid() },
       allSkills: [],
     };
@@ -38,8 +44,106 @@ class App extends Component {
     });
   };
 
-  handleCheckbox = (e) => {
-    console.log(e.target.value);
+  handlePresentChange = () => {
+    console.log(this.state.experienceInput);
+    this.setState((prevState) => ({
+      experienceInput: {
+        ...prevState.experienceInput,
+        endDate: {
+          text: !prevState.experienceInput.presentChecked
+            ? ''
+            : prevState.experienceInput.endDate.text,
+        },
+        presentChecked: !prevState.experienceInput.presentChecked,
+      },
+    }));
+  };
+
+  handleExperienceChange = (e) => {
+    this.setState((prevState) => ({
+      experienceInput: {
+        ...prevState.experienceInput,
+        [e.target.id]: {
+          ...prevState.experienceInput[e.target.id],
+          text: e.target.value,
+        },
+        id: this.state.experienceInput.id,
+      },
+    }));
+  };
+
+  onAddExperience = () => {
+    this.setState({
+      allExperiences: this.state.allExperiences.concat(
+        this.state.experienceInput
+      ),
+      experienceInput: {
+        companyName: { text: '' },
+        cityName: { text: '' },
+        positionTitle: { text: '' },
+        taskDescription: { text: '' },
+        startDate: { text: '' },
+        endDate: { text: '' },
+        id: uniqid(),
+        editItem: false,
+        presentChecked: false,
+      },
+    });
+  };
+
+  handleExperienceDelete = (id) => {
+    this.setState({
+      allExperiences: this.state.allExperiences.filter(
+        (experienceInput) => experienceInput.id !== id
+      ),
+    });
+  };
+
+  handleExperienceEdit = (id) => {
+    document.querySelector('.add-experience').style.display = 'none';
+    document.querySelector('.confirm-edits').style.display = 'block';
+    const disableButtons = document.querySelectorAll('.button-disable');
+    disableButtons.forEach((editButton) => {
+      editButton.style.pointerEvents = 'none';
+    });
+
+    let editThis = this.state.allExperiences.find(
+      (experienceInput) => experienceInput.id === id
+    );
+    editThis.editItem = true;
+
+    this.setState({
+      experienceInput: editThis,
+    });
+  };
+
+  handleExperienceEditConfirm = () => {
+    document.querySelector('.add-experience').style.display = 'block';
+    document.querySelector('.confirm-edits').style.display = 'none';
+    const disableButtons = document.querySelectorAll('.button-disable');
+    disableButtons.forEach((editButton) => {
+      editButton.style.pointerEvents = 'auto';
+    });
+
+    this.setState((prevState) => ({
+      experienceInput: {
+        ...prevState.experienceInput,
+        editItem: false,
+      },
+    }));
+
+    this.setState(
+      {
+        allExperiences: this.state.allExperiences.filter(
+          (experienceInput) =>
+            experienceInput.id !== this.state.experienceInput.id
+        ),
+      },
+      () => {
+        this.onAddExperience();
+        console.log(this.state.allExperiences);
+      }
+    );
   };
 
   handleSkillChange = (e) => {
@@ -154,35 +258,43 @@ class App extends Component {
               <section className="skills-sect">
                 <h3>Skills & Technologies</h3>
                 <label htmlFor="skillInput"></label>
-                <input
-                  type="text"
-                  id="skillInput"
-                  onChange={this.handleSkillChange}
-                  value={this.state.skillInput.text}
-                ></input>
+                <div className="skill-content">
+                  <input
+                    type="text"
+                    id="skillInput"
+                    onChange={this.handleSkillChange}
+                    value={this.state.skillInput.text}
+                  ></input>
+                  <button
+                    className="add-skill"
+                    type="submit"
+                    onClick={this.onAddSkill}
+                  >
+                    + Add skill
+                  </button>
+                </div>
                 <SkillsForm
                   skillDetails={this.state.allSkills}
                   handleSkillDelete={this.handleSkillDelete}
                 />
-                <button
-                  className="add-skill"
-                  type="submit"
-                  onClick={this.onAddSkill}
-                >
-                  + New
-                </button>
               </section>
 
               <section>
                 <div className="experience-add">
                   <h3>Experience</h3>
                 </div>
+                <AddExperienceToForm
+                  experienceDetails={this.state.allExperiences}
+                  handleExperienceChange={this.handleExperienceChange}
+                  handleExperienceDelete={this.handleExperienceDelete}
+                  handleExperienceEdit={this.handleExperienceEdit}
+                />
                 <label htmlFor="positionTitle">Position Title</label>
                 <input
                   type="text"
                   id="positionTitle"
-                  onChange={this.handleChange}
-                  value={this.state.positionTitle.text}
+                  onChange={this.handleExperienceChange}
+                  value={this.state.experienceInput.positionTitle.text}
                 ></input>
                 <div className="company-info">
                   <div className="company-divs">
@@ -190,8 +302,8 @@ class App extends Component {
                     <input
                       type="text"
                       id="companyName"
-                      onChange={this.handleChange}
-                      value={this.state.companyName.text}
+                      onChange={this.handleExperienceChange}
+                      value={this.state.experienceInput.companyName.text}
                     ></input>
                   </div>
                   <div className="company-divs">
@@ -199,8 +311,8 @@ class App extends Component {
                     <input
                       type="text"
                       id="cityName"
-                      onChange={this.handleChange}
-                      value={this.state.cityName.text}
+                      onChange={this.handleExperienceChange}
+                      value={this.state.experienceInput.cityName.text}
                     ></input>
                   </div>
                 </div>
@@ -212,8 +324,8 @@ class App extends Component {
                   rows="4"
                   cols="50"
                   id="taskDescription"
-                  onChange={this.handleChange}
-                  value={this.state.taskDescription.text}
+                  onChange={this.handleExperienceChange}
+                  value={this.state.experienceInput.taskDescription.text}
                 ></textarea>
                 <div className="dates">
                   <label htmlFor="startDate">Start</label>
@@ -221,18 +333,41 @@ class App extends Component {
                     className="date"
                     type="month"
                     id="startDate"
-                    onChange={this.handleChange}
-                    value={this.state.startDate.text}
+                    onChange={this.handleExperienceChange}
+                    value={this.state.experienceInput.startDate.text}
                   ></input>
                   <label htmlFor="endDate">End</label>
                   <input
                     className="date"
                     type="month"
                     id="endDate"
-                    onChange={this.handleChange}
-                    value={this.state.endDate.text}
+                    onChange={this.handleExperienceChange}
+                    value={this.state.experienceInput.endDate.text}
+                    disabled={this.state.experienceInput.presentChecked}
+                  ></input>
+                  <label htmlFor="present">Pres</label>
+                  <input
+                    type="checkbox"
+                    id="present"
+                    name="present"
+                    checked={this.state.experienceInput.presentChecked}
+                    onChange={this.handlePresentChange}
                   ></input>
                 </div>
+                <button
+                  className="add-experience"
+                  type="button"
+                  onClick={this.onAddExperience}
+                >
+                  + Add
+                </button>
+                <button
+                  className="confirm-edits"
+                  type="button"
+                  onClick={this.handleExperienceEditConfirm}
+                >
+                  Confirm
+                </button>
               </section>
 
               <button className="submit-button" type="submit">
@@ -256,7 +391,10 @@ class App extends Component {
 
                 <div className="experience-section">
                   <div className="title-experience small">Employment</div>
-                  <Experience experienceDetails={this.state} />
+                  <Experience
+                    theExperience={this.state.experienceInput}
+                    experienceDetails={this.state.allExperiences}
+                  />
                 </div>
               </div>
 

@@ -238,7 +238,8 @@ textarea {
 }
 
 .add-skill {
-  width: 30%;
+  width: 80px;
+  margin-left: 1em;
 }
 
 .skill-list {
@@ -257,11 +258,26 @@ textarea {
 .skill-list-form {
   background-color: rgb(197, 195, 195, 0.25);
   margin-bottom: 0.3em;
+  display: flex;
+  align-items: center;
+  gap: 0.2em;
+}
+
+.add-experience,
+.confirm-edits {
+  width: 70px;
+  margin-inline: auto;
+  margin-top: 1em;
+}
+
+.confirm-edits {
+  display: none;
 }
 
 .mail-icon,
 .phone-icon,
-.address-icon {
+.address-icon,
+.delete-icon {
   height: 1em;
 }
 
@@ -270,5 +286,26 @@ textarea {
 .address-container {
   display: flex;
   align-items: center;
+  gap: 0.5em;
+}
+
+.delete-icon:hover {
+  filter: invert(13%) sepia(90%) saturate(6009%) hue-rotate(359deg)
+    brightness(113%) contrast(114%);
+}
+
+.no-dot-point {
+  list-style: none;
+}
+
+.experiences {
+  display: flex;
+  gap: 0.5em;
+  align-items: center;
+}
+
+.skills {
+  display: flex;
+  flex-direction: column;
   gap: 0.5em;
 }
