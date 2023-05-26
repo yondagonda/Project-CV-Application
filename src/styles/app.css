@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
 *,
 *::before,
 *::after {
@@ -8,52 +9,111 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--ff-primary);
 }
 
 body {
-  background-color: rgb(243, 243, 243);
+  background-color: rgb(230, 230, 230);
 }
 :root {
-  /* --clr-primary: rgb(64, 64, 235);
-  --clr-accent: rgb(23, 23, 184); */
-  /* --ff-primary: 'Rubik', sans-serif;
-  --ff-secondary: Arial, Helvetica, sans-serif; */
+  --clr-primary: white;
+  --clr-inputs: rgba(167, 167, 167, 0.17);
+  --clr-existing: rgb(214, 214, 214);
+  --ff-primary: 'Poppins', sans-serif;
+  --fs-primary: 1em;
   --fs-secondary: 0.8em;
+  --fs-big: 2em;
+  --fs-months: 0.8em;
+  --text-area-width: 300px;
 }
 
 footer {
-  background-color: rgb(31, 30, 30);
-  color: white;
+  background-color: black;
+  color: var(--clr-primary);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.main-title {
   text-align: center;
-  font-size: 1.3em;
-  padding: 0.8em;
+  font-size: 1.4em;
+  padding-top: 0.5em;
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.creator {
+  text-align: center;
+  display: flex;
+  font-size: 0.8em;
+  justify-content: center;
+  gap: 0.3em;
+  align-items: center;
+  padding: 0em 0em 0.5em 0em;
+}
+
+.github {
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+  font-size: 1.2em;
+  padding: 0.3em 1em;
+  border: 0;
+  background-color: rgb(53, 52, 52);
+  border-radius: 6px;
+  color: rgb(235, 235, 235);
+}
+
+.github:hover {
+  transition: color 0.3s;
+  color: #a894db;
+}
+
+.github-name {
+  text-decoration: underline rgb(53, 52, 52);
 }
 
 .app {
   display: flex;
-  width: clamp(370px, 90%, 1400px);
+  width: clamp(370px, 90%, 1500px);
   margin-inline: auto;
   justify-content: center;
   gap: 2em;
   padding: 1em;
 }
 
-@media screen and (max-width: 1400px) {
+@media screen and (max-width: 1350px) {
   .preview-area {
-    max-height: 673.6px;
-    max-width: 476px;
+    max-height: 825.5px;
+    max-width: 585.5px !important;
+    min-width: 585.5px !important;
+  }
+  main {
+    max-width: 40%;
+  }
+  section {
+    min-width: 90%;
+  }
+  :root {
+    --fs-secondary: 0.63em;
+    --fs-primary: 0.81em;
+    --fs-big: 1.7em;
+    --fs-months: 0.9em;
+    --text-area-width: 250px;
   }
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1000px) {
   .preview-area {
-    max-height: 505.2px;
-    max-width: 357px;
-    min-width: 356px;
+    max-height: 643.5px;
+    max-width: 456.5px !important;
+    min-width: 456.25px !important;
   }
   main {
-    width: 40%;
+    min-width: 45%;
   }
   section {
     min-width: 90%;
@@ -61,9 +121,19 @@ footer {
   .dates {
     flex-direction: column;
   }
+  :root {
+    --fs-secondary: 0.5em;
+    --fs-primary: 0.65em;
+    --fs-big: 1.4em;
+    --fs-months: 0.8em;
+    --text-area-width: 200px;
+  }
+  .skills {
+    gap: 0.2em !important;
+  }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 850px) {
   .app {
     flex-direction: column;
     align-items: center;
@@ -71,20 +141,81 @@ footer {
     min-width: 360px;
   }
   main {
-    width: 85%;
+    min-width: 85%;
+  }
+  .preview-area {
+    max-height: 757.5px;
+    max-width: 535.5px !important;
+    min-width: 535.5px !important;
+  }
+  :root {
+    --fs-secondary: 0.61em;
+    --fs-primary: 0.8em;
+    --fs-big: 1.6em;
+    --fs-months: 0.85em;
+    --text-area-width: 240px;
+  }
+  .creator {
+    font-size: 0.7em;
+  }
+
+  .github {
+    font-size: 1em;
+  }
+  .main-title {
+    font-size: 1.1em;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .preview-area {
+    max-height: 643.5px;
+    max-width: 456.5px !important;
+    min-width: 456.25px !important;
+  }
+  :root {
+    --fs-secondary: 0.5em;
+    --fs-primary: 0.65em;
+    --fs-big: 1.4em;
+    --fs-months: 0.8em;
+    --text-area-width: 200px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .preview-area {
+    max-height: 488.36px;
+    max-width: 345.11px !important;
+    min-width: 345.1px !important;
+  }
+  main {
+    min-width: 340px;
+  }
+  :root {
+    --fs-secondary: 0.38em;
+    --fs-primary: 0.55em;
+    --fs-big: 1.1em;
+    --fs-months: 0.7em;
+    --text-area-width: 150px;
   }
 }
 
 main {
-  background-color: white;
+  background-color: var(--clr-primary);
   border-radius: 6px;
+  width: 654.39px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px,
+    rgb(209, 213, 219) 0px 0px 0px 1px inset;
 }
 
 section {
   display: flex;
   flex-direction: column;
   margin-inline: auto;
-  width: 74%;
+  width: 78%;
+  border: 1px solid rgb(46, 45, 45, 0.3);
+  border-radius: 8px;
+  padding: 1.2em;
 }
 
 form {
@@ -93,28 +224,27 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5em;
+  gap: 0.9em;
 }
 
 .preview-area {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  background-color: white;
+  background-color: var(--clr-primary);
   border-radius: 6px;
   display: grid;
   grid-template-rows: 1fr 4fr;
-  height: 842px;
-  width: 595px;
-  /* the above height is the size of an a4 paper, width should be 595px, h:842 */
+  height: 926.2px;
+  max-width: 654.5px;
+  min-width: 654.4px;
 }
 
 .top-level {
   padding: 1em 1em 1em 1em;
   display: grid;
-  grid-template-rows: 1fr 1fr;
-  background-color: rgb(77, 90, 104);
+  grid-template-rows: 1fr 0.6fr 1fr;
+  background-color: #303845;
   color: #fafafa;
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
+  border-radius: 6px 6px 0px 0px;
 }
 
 .preview-main {
@@ -123,38 +253,54 @@ form {
 
 .title {
   font-weight: bold;
-  font-size: 2em;
+  font-size: var(--fs-big);
   word-break: break-word;
   padding: 0.4em 0.3em 0em 0.3em;
+}
+
+.headline {
+  padding: 0em 0em 0em 0.5em;
+  color: rgb(214, 212, 212);
+  font-size: var(--fs-primary);
 }
 
 .top-right {
   padding: 0em 1em 0em 1em;
 }
 
-.largestFS {
-  font-size: var(--fs-secondary);
-}
-
-.education-container {
+.secondary-fs {
   font-size: var(--fs-secondary);
 }
 
 .small {
   font-weight: bold;
+  padding-bottom: 0.3em;
+}
+
+.main-header {
+  font-size: var(--fs-primary);
 }
 
 .dates {
   display: flex;
   padding-top: 0.5em;
   justify-content: space-evenly;
-  /* flex-shrink: 0;
-  height: 2em; */
+  gap: 0.5em;
 }
 
 .submit-button {
   width: 200px;
-  margin-top: 1.5em;
+  margin-top: 1.6em;
+  background-color: #4313c1;
+  color: var(--clr-primary);
+  font-weight: bold;
+  padding: 0.8em;
+  border: 0;
+  border-radius: 6px;
+}
+.submit-button:hover {
+  background-color: #6e42df;
+  transition: background-color 0.3s;
 }
 
 .company-info,
@@ -167,6 +313,16 @@ form {
 
 .greyed {
   color: rgb(88, 87, 87);
+}
+
+.grey {
+  background-color: var(--clr-existing);
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+  border-radius: 5px;
+  padding: 0em 0.1em;
+  font-size: 0.9em;
 }
 
 .company-divs,
@@ -187,10 +343,8 @@ form {
 }
 
 .line {
-  margin-top: 1em;
-  margin-bottom: 1em;
+  margin: 1em 0em 1em 0em;
   border: 0;
-  height: 0;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
@@ -203,18 +357,24 @@ form {
 
 .employment-dates {
   display: flex;
+  font-size: var(--fs-months);
+}
+
+.list-of-experience {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7em;
 }
 
 input,
 textarea {
-  background-color: rgb(197, 195, 195, 0.25);
+  background-color: var(--clr-inputs);
   border: 0;
   border-radius: 4px;
 }
 
 .text-area {
-  max-width: 250px;
-  /* this width will need to be updated based on screen size, font size, etc. */
+  max-width: var(--text-area-width);
   overflow-wrap: break-word;
 }
 
@@ -242,70 +402,106 @@ textarea {
   margin-left: 1em;
 }
 
-.skill-list {
-  font-size: var(--fs-secondary);
-}
-
 .skill-list-form-container {
   display: flex;
   flex-direction: row;
   gap: 0.2em 0.4em;
   flex-wrap: wrap;
   max-width: 432.48px;
-  /* the width setting above will likely require media queries */
+}
+
+.skill-list {
+  font-size: var(--fs-secondary);
 }
 
 .skill-list-form {
-  background-color: rgb(197, 195, 195, 0.25);
+  background-color: var(--clr-existing);
   margin-bottom: 0.3em;
   display: flex;
   align-items: center;
   gap: 0.2em;
+  border-radius: 5px;
+  padding: 0em 0.1em;
+  font-size: 0.9em;
 }
 
 .add-experience,
 .confirm-edits {
-  width: 70px;
+  width: 140px;
   margin-inline: auto;
   margin-top: 1em;
 }
 
+.add-skill,
+.add-experience,
+.confirm-edits {
+  background-color: var(--clr-primary);
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 0.1em 0.1em;
+  color: black;
+}
+
+.add-skill:hover,
+.add-experience:hover,
+.confirm-edits:hover {
+  transition: color 0.3s;
+  color: #9a2fd8;
+}
+
 .confirm-edits {
   display: none;
+  width: 100px;
 }
 
 .mail-icon,
 .phone-icon,
 .address-icon,
-.delete-icon {
+.delete-icon,
+.button-disable,
+.github-icon {
   height: 1em;
 }
 
 .email-container,
 .phone-container,
 .address-container {
-  display: flex;
   align-items: center;
-  gap: 0.5em;
 }
 
 .delete-icon:hover {
   filter: invert(13%) sepia(90%) saturate(6009%) hue-rotate(359deg)
     brightness(113%) contrast(114%);
+  transition: filter 0.2s;
+}
+
+.button-disable:hover {
+  filter: invert(51%) sepia(71%) saturate(3010%) hue-rotate(161deg)
+    brightness(94%) contrast(102%);
+  transition: filter 0.2s;
 }
 
 .no-dot-point {
   list-style: none;
 }
 
-.experiences {
-  display: flex;
-  gap: 0.5em;
-  align-items: center;
-}
-
+.existing-experiences,
 .skills {
   display: flex;
   flex-direction: column;
+  gap: 0.2em;
+}
+
+.present-checkbox,
+.skills,
+.experiences,
+.email-container,
+.phone-container,
+.address-container {
+  display: flex;
   gap: 0.5em;
+}
+
+.experiences {
+  align-items: center;
 }
