@@ -1,16 +1,16 @@
-// this component will just be reponsible for rendering the 'general' section
 import React from 'react';
 import mailIcon from '../img/mail.svg';
 import phoneIcon from '../img/phone.svg';
 import addressIcon from '../img/address.svg';
 
 export default function Personal(props) {
-  const { emailInput, nameInput, phoneInput, addressInput } =
+  const { emailInput, nameInput, headlineInput, phoneInput, addressInput } =
     props.personalDetails;
   return (
     <>
       <div className="title">{nameInput.text}</div>
-      <div className="top-right largestFS">
+      <div className="headline">{headlineInput.text}</div>
+      <div className="top-right secondary-fs">
         <div className="email-container">
           <img src={mailIcon} className="mail-icon" alt="mail icon" />
           <div>{emailInput.text}</div>

@@ -5,6 +5,7 @@ import Education from './components/education';
 import { Experience, AddExperienceToForm } from './components/experience';
 import { Skills, SkillsForm } from './components/skills';
 import uniqid from 'uniqid';
+import githubIcon from './img/github.svg';
 
 class App extends Component {
   constructor() {
@@ -12,6 +13,7 @@ class App extends Component {
 
     this.state = {
       nameInput: { text: '' },
+      headlineInput: { text: ' ' },
       emailInput: { text: '' },
       phoneInput: { text: '' },
       addressInput: { text: '' },
@@ -45,7 +47,6 @@ class App extends Component {
   };
 
   handlePresentChange = () => {
-    console.log(this.state.experienceInput);
     this.setState((prevState) => ({
       experienceInput: {
         ...prevState.experienceInput,
@@ -141,7 +142,6 @@ class App extends Component {
       },
       () => {
         this.onAddExperience();
-        console.log(this.state.allExperiences);
       }
     );
   };
@@ -174,7 +174,22 @@ class App extends Component {
   render() {
     return (
       <>
-        <footer>CV Builder</footer>
+        <footer>
+          <div className="main-title">CV Builder</div>
+          <div className="creator">
+            An application by
+            <a href="https://github.com/yondagonda" alt="link to Github">
+              <button className="github" spellCheck="false" data-gramm="false">
+                <img
+                  src={githubIcon}
+                  className="github-icon"
+                  alt="github icon"
+                />
+                <div className="github-name">yondagonda</div>
+              </button>
+            </a>
+          </div>
+        </footer>
         <div className="app">
           <main>
             <form>
@@ -186,6 +201,13 @@ class App extends Component {
                   id="nameInput"
                   onChange={this.handleChange}
                   value={this.state.nameInput.text}
+                ></input>
+                <label htmlFor="headlineInput">Headline </label>
+                <input
+                  type="text"
+                  id="headlineInput"
+                  onChange={this.handleChange}
+                  value={this.state.headlineInput.text}
                 ></input>
                 <div className="emailPhone">
                   <div className="emailPhoneContainer">
@@ -345,21 +367,23 @@ class App extends Component {
                     value={this.state.experienceInput.endDate.text}
                     disabled={this.state.experienceInput.presentChecked}
                   ></input>
-                  <label htmlFor="present">Pres</label>
-                  <input
-                    type="checkbox"
-                    id="present"
-                    name="present"
-                    checked={this.state.experienceInput.presentChecked}
-                    onChange={this.handlePresentChange}
-                  ></input>
+                  <div className="present-checkbox">
+                    <label htmlFor="present">Present</label>
+                    <input
+                      type="checkbox"
+                      id="present"
+                      name="present"
+                      checked={this.state.experienceInput.presentChecked}
+                      onChange={this.handlePresentChange}
+                    ></input>
+                  </div>
                 </div>
                 <button
                   className="add-experience"
                   type="button"
                   onClick={this.onAddExperience}
                 >
-                  + Add
+                  + Add Experience
                 </button>
                 <button
                   className="confirm-edits"
@@ -370,8 +394,9 @@ class App extends Component {
                 </button>
               </section>
 
-              <button className="submit-button" type="submit">
+              <button className="submit-button" type="button">
                 Submit/Download as PDF
+                {/* change button type to 'submit', later when implementing the PDF download feature */}
               </button>
             </form>
           </main>
@@ -383,14 +408,18 @@ class App extends Component {
             <div className="preview-main">
               <div>
                 <div className="education-section">
-                  <div className="title-education small">Education</div>
+                  <div className="title-education small main-header">
+                    Education
+                  </div>
                   <Education educationDetails={this.state} />
                 </div>
 
                 <hr className="line"></hr>
 
                 <div className="experience-section">
-                  <div className="title-experience small">Employment</div>
+                  <div className="title-experience small main-header">
+                    Employment
+                  </div>
                   <Experience
                     theExperience={this.state.experienceInput}
                     experienceDetails={this.state.allExperiences}
@@ -399,7 +428,7 @@ class App extends Component {
               </div>
 
               <div className="skills-section">
-                <div className="title-skills small"> Skills</div>
+                <div className="title-skills small main-header"> Skills</div>
                 <Skills
                   skillDetails={this.state.allSkills}
                   theSkill={this.state.skillInput}

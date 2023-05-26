@@ -1,6 +1,7 @@
 import React from 'react';
 import format from 'date-fns/format';
 import trashIcon from '../img/trash.svg';
+import pencilIcon from '../img/pencil.svg';
 
 export function Experience(props) {
   const {
@@ -14,10 +15,9 @@ export function Experience(props) {
   } = props.theExperience;
 
   const { experienceDetails } = props;
-  console.log(experienceDetails);
 
   return (
-    <ul>
+    <ul className="list-of-experience">
       {experienceDetails.map((experience, index) => {
         if (experience.editItem === false) {
           return (
@@ -29,29 +29,25 @@ export function Experience(props) {
                     {`${experience.positionTitle.text} `}
                   </div>
                   <div className="company-info greyed">
-                    {`${experience.companyName.text} `}
+                    {`${experience.companyName.text}, `}
                     {`${experience.cityName.text} `}
                   </div>
                   <div className="text-area">
                     {experience.taskDescription.text}
                   </div>
                 </div>
-                <div className="employment">
-                  <div className="employment-dates">
-                    <div>
-                      {experience.startDate.text
-                        ? format(
-                            new Date(experience.startDate.text),
-                            'MMM yyyy'
-                          )
-                        : ''}{' '}
-                      -{' '}
-                      {experience.endDate.text
-                        ? format(new Date(experience.endDate.text), 'MMM yyyy')
-                        : experience.presentChecked
-                        ? 'Present'
-                        : ''}
-                    </div>
+
+                <div className="employment-dates">
+                  <div>
+                    {experience.startDate.text
+                      ? format(new Date(experience.startDate.text), 'MMM yyyy')
+                      : ''}{' '}
+                    -{' '}
+                    {experience.endDate.text
+                      ? format(new Date(experience.endDate.text), 'MMM yyyy')
+                      : experience.presentChecked
+                      ? 'Present'
+                      : ''}
                   </div>
                 </div>
               </div>
@@ -69,18 +65,17 @@ export function Experience(props) {
             </div>
             <div className="text-area">{taskDescription.text}</div>
           </div>
-          <div className="employment">
-            <div className="employment-dates">
-              <div>
-                {startDate.text
-                  ? format(new Date(startDate.text), 'MMM yyyy')
-                  : ''}{' '}
-                {endDate.text
-                  ? format(new Date(endDate.text), 'MMM yyyy')
-                  : presentChecked
-                  ? ' - Present'
-                  : ''}
-              </div>
+
+          <div className="employment-dates">
+            <div>
+              {startDate.text
+                ? format(new Date(startDate.text), 'MMM yyyy')
+                : ''}{' '}
+              {endDate.text
+                ? format(new Date(endDate.text), 'MMM yyyy')
+                : presentChecked
+                ? ' - Present'
+                : ''}
             </div>
           </div>
         </div>
@@ -93,26 +88,25 @@ export function AddExperienceToForm(props) {
   const { experienceDetails } = props;
 
   return (
-    <ul>
+    <ul className="existing-experiences">
       {experienceDetails.map((experience, index) => {
         return (
           <div className="experiences" key={experience.id}>
-            <div>
+            <div className="grey">
               {experience.positionTitle.text} at {experience.companyName.text}
+              <img
+                src={trashIcon}
+                className="delete-icon"
+                alt="delete-icon"
+                onClick={() => props.handleExperienceDelete(experience.id)}
+              />
+              <img
+                src={pencilIcon}
+                className="button-disable"
+                alt="pencil-icon"
+                onClick={() => props.handleExperienceEdit(experience.id)}
+              />
             </div>
-            <img
-              src={trashIcon}
-              className="delete-icon"
-              alt="delete-icon"
-              onClick={() => props.handleExperienceDelete(experience.id)}
-            />
-            <button
-              type="button"
-              className="button-disable"
-              onClick={() => props.handleExperienceEdit(experience.id)}
-            >
-              Edit
-            </button>
           </div>
         );
       })}
