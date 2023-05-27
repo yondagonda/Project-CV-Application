@@ -6,6 +6,8 @@ import { Experience, AddExperienceToForm } from './components/experience';
 import { Skills, SkillsForm } from './components/skills';
 import uniqid from 'uniqid';
 import githubIcon from './img/github.svg';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 class App extends Component {
   constructor() {
@@ -171,43 +173,198 @@ class App extends Component {
     });
   };
 
+  handleDownloadPDF = () => {
+    const cv = document.querySelector('.preview-area');
+
+    html2canvas(cv, { scale: 4, quality: 5 }).then((canvas) => {
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF();
+
+      const imgProps = pdf.getImageProperties(imgData);
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+      pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth + 1, pdfHeight);
+      pdf.save('cv.pdf');
+    });
+  };
+
+  handleExample = () => {
+    this.setState({
+      nameInput: { text: 'Albert Einstein' },
+      headlineInput: { text: 'Theoretical Physicist' },
+      emailInput: { text: 'albert@einstein.com' },
+      phoneInput: { text: '1234 123 123' },
+      addressInput: { text: '112 Mercer Street, Princeton, New Jersey' },
+      schoolName: { text: 'University of Zurich' },
+      titleOfStudy: { text: 'Mathematics and Natural Sciences Degree' },
+      lengthOfStudy: { text: '4' },
+      eduCity: { text: 'Switzerland' },
+      experienceInput: {
+        companyName: { text: '' },
+        cityName: { text: '' },
+        positionTitle: { text: '' },
+        taskDescription: { text: '' },
+        startDate: { text: '' },
+        endDate: { text: '' },
+        id: uniqid(),
+        editItem: false,
+        presentChecked: false,
+      },
+      allExperiences: [
+        {
+          companyName: { text: 'Institute of Advanced Study' },
+          cityName: { text: 'Princeton University' },
+          positionTitle: { text: 'Professor' },
+          taskDescription: {
+            text: 'Continued research, collaborated with other scientists and became a prominent figure in the scientific community',
+          },
+          startDate: { text: '1933-03' },
+          endDate: { text: '1955-07' },
+          id: uniqid(),
+          editItem: false,
+          presentChecked: false,
+        },
+        {
+          companyName: { text: 'Humboldt University' },
+          cityName: { text: 'Berlin' },
+          positionTitle: { text: 'Director and Professor' },
+          taskDescription: {
+            text: 'Made significant contributions in advancing theoretical physics with general theory of relativity',
+          },
+          startDate: { text: '1914-10' },
+          endDate: { text: '1933-03' },
+          id: uniqid(),
+          editItem: false,
+          presentChecked: false,
+        },
+        {
+          companyName: { text: 'Swiss Federal Institute of Technology' },
+          cityName: { text: 'Zurich' },
+          positionTitle: { text: 'Professor of Theoretical Physics' },
+          taskDescription: { text: 'Conducted research, taught students' },
+          startDate: { text: '1912-03' },
+          endDate: { text: '1914-09' },
+          id: uniqid(),
+          editItem: false,
+          presentChecked: false,
+        },
+      ],
+      skillInput: { text: '', id: uniqid() },
+      allSkills: [
+        { text: 'Mathematical Physics', id: uniqid() },
+        { text: 'General Relativity', id: uniqid() },
+        { text: 'Quantum Mechanics', id: uniqid() },
+        { text: 'Theoretical Modelling', id: uniqid() },
+        { text: 'Electromagnetism', id: uniqid() },
+        { text: 'Particle Physics', id: uniqid() },
+        { text: 'Statistical Physics', id: uniqid() },
+        { text: 'Violinist', id: uniqid() },
+      ],
+    });
+  };
+
+  handleClearExample = () => {
+    this.setState({
+      nameInput: { text: '' },
+      headlineInput: { text: ' ' },
+      emailInput: { text: '' },
+      phoneInput: { text: '' },
+      addressInput: { text: '' },
+      schoolName: { text: '' },
+      titleOfStudy: { text: '' },
+      lengthOfStudy: { text: '' },
+      eduCity: { text: '' },
+      experienceInput: {
+        companyName: { text: '' },
+        cityName: { text: '' },
+        positionTitle: { text: '' },
+        taskDescription: { text: '' },
+        startDate: { text: '' },
+        endDate: { text: '' },
+        id: uniqid(),
+        editItem: false,
+        presentChecked: false,
+      },
+      allExperiences: [],
+      skillInput: { text: '', id: uniqid() },
+      allSkills: [],
+    });
+  };
+
   render() {
+    const {
+      nameInput,
+      headlineInput,
+      emailInput,
+      phoneInput,
+      addressInput,
+      schoolName,
+      titleOfStudy,
+      lengthOfStudy,
+      eduCity,
+      experienceInput,
+      allExperiences,
+      skillInput,
+      allSkills,
+    } = this.state;
     return (
       <>
         <footer>
           <div className="main-title">CV Builder</div>
           <div className="creator">
             An application by
-            <a href="https://github.com/yondagonda" alt="link to Github">
-              <button className="github" spellCheck="false" data-gramm="false">
+            <button
+              className="github"
+              onClick={() => {
+                window.open('https://github.com/yondagonda');
+              }}
+            >
+              <span>
                 <img
                   src={githubIcon}
                   className="github-icon"
                   alt="github icon"
                 />
-                <div className="github-name">yondagonda</div>
-              </button>
-            </a>
+                yondagonda
+              </span>
+            </button>
           </div>
         </footer>
         <div className="app">
           <main>
             <form>
               <section>
-                <h3>Personal</h3>
+                <div className="autofill-area">
+                  <h3>Personal</h3>
+                  <button
+                    type="button"
+                    className="autofill-btn"
+                    onClick={this.handleExample}
+                  >
+                    See Example
+                  </button>
+                  <button
+                    type="button"
+                    className="clear-example-btn"
+                    onClick={this.handleClearExample}
+                  >
+                    Clear All
+                  </button>
+                </div>
                 <label htmlFor="nameInput">Name </label>
                 <input
                   type="text"
                   id="nameInput"
                   onChange={this.handleChange}
-                  value={this.state.nameInput.text}
+                  value={nameInput.text}
+                  maxLength={57}
                 ></input>
                 <label htmlFor="headlineInput">Headline </label>
                 <input
                   type="text"
                   id="headlineInput"
                   onChange={this.handleChange}
-                  value={this.state.headlineInput.text}
+                  value={headlineInput.text}
                 ></input>
                 <div className="emailPhone">
                   <div className="emailPhoneContainer">
@@ -216,7 +373,7 @@ class App extends Component {
                       type="email"
                       id="emailInput"
                       onChange={this.handleChange}
-                      value={this.state.emailInput.text}
+                      value={emailInput.text}
                     ></input>
                   </div>
                   <div className="emailPhoneContainer">
@@ -225,7 +382,8 @@ class App extends Component {
                       type="text"
                       id="phoneInput"
                       onChange={this.handleChange}
-                      value={this.state.phoneInput.text}
+                      value={phoneInput.text}
+                      maxLength={18}
                     ></input>
                   </div>
                 </div>
@@ -235,7 +393,7 @@ class App extends Component {
                   type="text"
                   id="addressInput"
                   onChange={this.handleChange}
-                  value={this.state.addressInput.text}
+                  value={addressInput.text}
                 ></input>
               </section>
 
@@ -246,14 +404,14 @@ class App extends Component {
                   type="text"
                   id="titleOfStudy"
                   onChange={this.handleChange}
-                  value={this.state.titleOfStudy.text}
+                  value={titleOfStudy.text}
                 ></input>
                 <label htmlFor="schoolName">Name of School </label>
                 <input
                   type="text"
                   id="schoolName"
                   onChange={this.handleChange}
-                  value={this.state.schoolName.text}
+                  value={schoolName.text}
                 ></input>
                 <div className="study-info">
                   <div className="study-container">
@@ -262,7 +420,8 @@ class App extends Component {
                       type="text"
                       id="lengthOfStudy"
                       onChange={this.handleChange}
-                      value={this.state.lengthOfStudy.text}
+                      value={lengthOfStudy.text}
+                      maxLength={2}
                     ></input>
                   </div>
                   <div className="study-container">
@@ -271,7 +430,7 @@ class App extends Component {
                       type="text"
                       id="eduCity"
                       onChange={this.handleChange}
-                      value={this.state.eduCity.text}
+                      value={eduCity.text}
                     ></input>
                   </div>
                 </div>
@@ -285,7 +444,7 @@ class App extends Component {
                     type="text"
                     id="skillInput"
                     onChange={this.handleSkillChange}
-                    value={this.state.skillInput.text}
+                    value={skillInput.text}
                   ></input>
                   <button
                     className="add-skill"
@@ -296,7 +455,7 @@ class App extends Component {
                   </button>
                 </div>
                 <SkillsForm
-                  skillDetails={this.state.allSkills}
+                  skillDetails={allSkills}
                   handleSkillDelete={this.handleSkillDelete}
                 />
               </section>
@@ -306,7 +465,7 @@ class App extends Component {
                   <h3>Experience</h3>
                 </div>
                 <AddExperienceToForm
-                  experienceDetails={this.state.allExperiences}
+                  experienceDetails={allExperiences}
                   handleExperienceChange={this.handleExperienceChange}
                   handleExperienceDelete={this.handleExperienceDelete}
                   handleExperienceEdit={this.handleExperienceEdit}
@@ -316,7 +475,7 @@ class App extends Component {
                   type="text"
                   id="positionTitle"
                   onChange={this.handleExperienceChange}
-                  value={this.state.experienceInput.positionTitle.text}
+                  value={experienceInput.positionTitle.text}
                 ></input>
                 <div className="company-info">
                   <div className="company-divs">
@@ -325,7 +484,7 @@ class App extends Component {
                       type="text"
                       id="companyName"
                       onChange={this.handleExperienceChange}
-                      value={this.state.experienceInput.companyName.text}
+                      value={experienceInput.companyName.text}
                     ></input>
                   </div>
                   <div className="company-divs">
@@ -334,7 +493,7 @@ class App extends Component {
                       type="text"
                       id="cityName"
                       onChange={this.handleExperienceChange}
-                      value={this.state.experienceInput.cityName.text}
+                      value={experienceInput.cityName.text}
                     ></input>
                   </div>
                 </div>
@@ -347,7 +506,7 @@ class App extends Component {
                   cols="50"
                   id="taskDescription"
                   onChange={this.handleExperienceChange}
-                  value={this.state.experienceInput.taskDescription.text}
+                  value={experienceInput.taskDescription.text}
                 ></textarea>
                 <div className="dates">
                   <label htmlFor="startDate">Start</label>
@@ -356,7 +515,7 @@ class App extends Component {
                     type="month"
                     id="startDate"
                     onChange={this.handleExperienceChange}
-                    value={this.state.experienceInput.startDate.text}
+                    value={experienceInput.startDate.text}
                   ></input>
                   <label htmlFor="endDate">End</label>
                   <input
@@ -364,8 +523,8 @@ class App extends Component {
                     type="month"
                     id="endDate"
                     onChange={this.handleExperienceChange}
-                    value={this.state.experienceInput.endDate.text}
-                    disabled={this.state.experienceInput.presentChecked}
+                    value={experienceInput.endDate.text}
+                    disabled={experienceInput.presentChecked}
                   ></input>
                   <div className="present-checkbox">
                     <label htmlFor="present">Present</label>
@@ -373,7 +532,7 @@ class App extends Component {
                       type="checkbox"
                       id="present"
                       name="present"
-                      checked={this.state.experienceInput.presentChecked}
+                      checked={experienceInput.presentChecked}
                       onChange={this.handlePresentChange}
                     ></input>
                   </div>
@@ -394,9 +553,12 @@ class App extends Component {
                 </button>
               </section>
 
-              <button className="submit-button" type="button">
-                Submit/Download as PDF
-                {/* change button type to 'submit', later when implementing the PDF download feature */}
+              <button
+                className="submit-button"
+                type="button"
+                onClick={this.handleDownloadPDF}
+              >
+                Download as PDF
               </button>
             </form>
           </main>
@@ -421,18 +583,15 @@ class App extends Component {
                     Employment
                   </div>
                   <Experience
-                    theExperience={this.state.experienceInput}
-                    experienceDetails={this.state.allExperiences}
+                    theExperience={experienceInput}
+                    experienceDetails={allExperiences}
                   />
                 </div>
               </div>
 
               <div className="skills-section">
                 <div className="title-skills small main-header"> Skills</div>
-                <Skills
-                  skillDetails={this.state.allSkills}
-                  theSkill={this.state.skillInput}
-                />
+                <Skills skillDetails={allSkills} theSkill={skillInput} />
               </div>
             </div>
           </div>

@@ -29,7 +29,7 @@ export function SkillsForm(props) {
 
             <img
               src={trashIcon}
-              class="delete-icon"
+              className="delete-icon"
               alt="delete-icon"
               onClick={() => props.handleSkillDelete(skill.id)}
             />

@@ -20,10 +20,10 @@ body {
   --clr-inputs: rgba(167, 167, 167, 0.17);
   --clr-existing: rgb(214, 214, 214);
   --ff-primary: 'Poppins', sans-serif;
-  --fs-primary: 1em;
-  --fs-secondary: 0.8em;
-  --fs-big: 2em;
-  --fs-months: 0.8em;
+  --fs-primary: 0.9em;
+  --fs-secondary: 0.75em;
+  --fs-big: 1.94em;
+  --fs-months: 0.81em;
   --text-area-width: 300px;
 }
 
@@ -54,28 +54,6 @@ footer {
   padding: 0em 0em 0.5em 0em;
 }
 
-.github {
-  background-color: transparent;
-  display: flex;
-  align-items: center;
-  gap: 0.3em;
-  font-size: 1.2em;
-  padding: 0.3em 1em;
-  border: 0;
-  background-color: rgb(53, 52, 52);
-  border-radius: 6px;
-  color: rgb(235, 235, 235);
-}
-
-.github:hover {
-  transition: color 0.3s;
-  color: #a894db;
-}
-
-.github-name {
-  text-decoration: underline rgb(53, 52, 52);
-}
-
 .app {
   display: flex;
   width: clamp(370px, 90%, 1500px);
@@ -83,6 +61,25 @@ footer {
   justify-content: center;
   gap: 2em;
   padding: 1em;
+}
+
+.preview-area {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-color: var(--clr-primary);
+  display: grid;
+  grid-template-rows: 1fr 4fr;
+  height: 926.2px;
+  max-width: 654.5px;
+  min-width: 654.4px;
+}
+
+.top-level {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 0.7em 1em 1em 1em;
+  display: grid;
+  grid-template-rows: 1fr 0.6fr 1fr;
+  background-color: #303845;
+  color: #fafafa;
 }
 
 @media screen and (max-width: 1350px) {
@@ -101,8 +98,20 @@ footer {
     --fs-secondary: 0.63em;
     --fs-primary: 0.81em;
     --fs-big: 1.7em;
-    --fs-months: 0.9em;
+    --fs-months: 0.8em;
     --text-area-width: 250px;
+  }
+  .line {
+    margin: 0.9em 0em 0.9em 0em !important;
+  }
+  .list-of-experience {
+    gap: 0.6em !important;
+  }
+  .top-level {
+    padding: 0.7em 0.9em 0.9em 0.9em !important;
+  }
+  .preview-main {
+    padding: 0.9em !important;
   }
 }
 
@@ -131,6 +140,21 @@ footer {
   .skills {
     gap: 0.2em !important;
   }
+  .skills-section {
+    padding-left: 1.3em !important;
+  }
+  .line {
+    margin: 0.78em 0em 0.78em 0em !important;
+  }
+  .list-of-experience {
+    gap: 0.45em !important;
+  }
+  .top-level {
+    padding: 0.4em 0.8em 0.8em 0.8em !important;
+  }
+  .preview-main {
+    padding: 0.8em !important;
+  }
 }
 
 @media screen and (max-width: 850px) {
@@ -152,16 +176,13 @@ footer {
     --fs-secondary: 0.61em;
     --fs-primary: 0.8em;
     --fs-big: 1.6em;
-    --fs-months: 0.85em;
+    --fs-months: 0.83em;
     --text-area-width: 240px;
   }
   .creator {
     font-size: 0.7em;
   }
 
-  .github {
-    font-size: 1em;
-  }
   .main-title {
     font-size: 1.1em;
   }
@@ -175,10 +196,25 @@ footer {
   }
   :root {
     --fs-secondary: 0.5em;
-    --fs-primary: 0.65em;
-    --fs-big: 1.4em;
+    --fs-primary: 0.6em;
+    --fs-big: 1.3em;
     --fs-months: 0.8em;
     --text-area-width: 200px;
+  }
+  .line {
+    margin: 0.67em 0em 0.67em 0em !important;
+  }
+  .list-of-experience {
+    gap: 0.4em !important;
+  }
+  .top-level {
+    padding: 0.45em 0.7em 0.7em 0.7em !important;
+  }
+  .preview-main {
+    padding: 0.68em !important;
+  }
+  .submit-button {
+    width: 160px !important;
   }
 }
 
@@ -193,10 +229,25 @@ footer {
   }
   :root {
     --fs-secondary: 0.38em;
-    --fs-primary: 0.55em;
+    --fs-primary: 0.45em;
     --fs-big: 1.1em;
-    --fs-months: 0.7em;
+    --fs-months: 5px;
     --text-area-width: 150px;
+  }
+  .skills-section {
+    padding-left: 1em !important;
+  }
+  .line {
+    margin: 0.5em 0em 0.5em 0em !important;
+  }
+  .list-of-experience {
+    gap: 0.3em !important;
+  }
+  .top-level {
+    padding: 0.45em 0.5em 0.5em 0.5em !important;
+  }
+  .preview-main {
+    padding: 0.5em !important;
   }
 }
 
@@ -220,31 +271,11 @@ section {
 
 form {
   margin-inline: auto;
-  padding: 2em 0em;
+  padding: 2em 0em 1.2em 0em;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.9em;
-}
-
-.preview-area {
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  background-color: var(--clr-primary);
-  border-radius: 6px;
-  display: grid;
-  grid-template-rows: 1fr 4fr;
-  height: 926.2px;
-  max-width: 654.5px;
-  min-width: 654.4px;
-}
-
-.top-level {
-  padding: 1em 1em 1em 1em;
-  display: grid;
-  grid-template-rows: 1fr 0.6fr 1fr;
-  background-color: #303845;
-  color: #fafafa;
-  border-radius: 6px 6px 0px 0px;
 }
 
 .preview-main {
@@ -288,21 +319,6 @@ form {
   gap: 0.5em;
 }
 
-.submit-button {
-  width: 200px;
-  margin-top: 1.6em;
-  background-color: #4313c1;
-  color: var(--clr-primary);
-  font-weight: bold;
-  padding: 0.8em;
-  border: 0;
-  border-radius: 6px;
-}
-.submit-button:hover {
-  background-color: #6e42df;
-  transition: background-color 0.3s;
-}
-
 .company-info,
 .emailPhone,
 .study-info,
@@ -321,7 +337,7 @@ form {
   align-items: center;
   gap: 0.4em;
   border-radius: 5px;
-  padding: 0em 0.1em;
+  padding: 0em 0.2em;
   font-size: 0.9em;
 }
 
@@ -416,7 +432,7 @@ textarea {
 
 .skill-list-form {
   background-color: var(--clr-existing);
-  margin-bottom: 0.3em;
+  margin-bottom: 0.1em;
   display: flex;
   align-items: center;
   gap: 0.2em;
@@ -440,6 +456,8 @@ textarea {
   border-radius: 4px;
   padding: 0.1em 0.1em;
   color: black;
+  font-weight: bold;
+  font-size: 0.75em;
 }
 
 .add-skill:hover,
@@ -504,4 +522,158 @@ textarea {
 
 .experiences {
   align-items: center;
+}
+
+.autofill-area {
+  display: flex;
+  gap: 0.9em;
+  align-items: center;
+}
+
+/* CSS Button Styling for 'see example' and 'clear all'*/
+.autofill-btn,
+.clear-example-btn {
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.85);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: system-ui, -apple-system, system-ui, 'Helvetica Neue', Helvetica,
+    Arial, sans-serif;
+  font-size: 0.8em;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 0;
+  min-height: 2rem;
+  padding: calc(0.6rem - 1px) calc(1rem - 1px);
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: auto;
+}
+
+.autofill-btn:hover,
+.autofill-btn:focus,
+.clear-example-btn:hover {
+  border-color: rgba(0, 0, 0, 0.25);
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.autofill-btn:hover,
+.clear-example-btn:hover {
+  transform: translateY(-1px);
+}
+
+.autofill-btn:active,
+.clear-example-btn:active {
+  background-color: #f0f0f1;
+  border-color: rgba(0, 0, 0, 0.25);
+  box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+  color: rgba(0, 0, 0, 0.65);
+  transform: translateY(0);
+}
+
+/* CSS Button Styling for 'download as pdf' */
+.submit-button {
+  background-image: linear-gradient(
+    92.88deg,
+    #455eb5 9.16%,
+    #5643cc 43.89%,
+    #673fd7 64.72%
+  );
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  flex-shrink: 0;
+  font-family: 'Inter UI', 'SF Pro Display', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
+    sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  height: 2.8rem;
+  margin-top: 0.6em;
+  padding: 0 1.2rem;
+  text-align: center;
+  text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
+  transition: all 0.5s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.submit-button:hover {
+  box-shadow: rgba(80, 63, 205, 0.5) 0 1px 30px;
+  transition-duration: 0.1s;
+}
+
+@media (min-width: 768px) {
+  .submit-button {
+    padding: 0 1.8rem;
+  }
+}
+
+/* CSS Button Styling for 'yondagonda' */
+.button-64,
+.github {
+  align-items: center;
+  background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
+  border: 0;
+  border-radius: 8px;
+  box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+  box-sizing: border-box;
+  color: #ffffff;
+  display: flex;
+  font-family: Phantomsans, sans-serif;
+  font-size: 13px;
+  justify-content: center;
+  line-height: 1em;
+  max-width: 100%;
+  min-width: 125px;
+  padding: 2px;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.github:active,
+.github:hover {
+  outline: 0;
+}
+
+.github span {
+  background-color: rgb(5, 6, 45);
+  padding: 7px 12px;
+  border-radius: 6px;
+  width: 100%;
+  height: 100%;
+  transition: 300ms;
+  display: flex;
+  gap: 0.3em;
+  justify-content: center;
+}
+
+.github:hover span {
+  background: none;
+}
+
+@media (min-width: 850px) {
+  .github {
+    font-size: 15px;
+    min-width: 150px;
+  }
 }
