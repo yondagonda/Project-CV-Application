@@ -7,3 +7,4 @@ An app that allows the user to create a CV by filling in their details. Built wi
 Future possible improvements to be made:
 - download as PDF button functionality
 - allow more than one education section to be added
+- validation on inputs
