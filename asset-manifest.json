@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Project-CV-Application/static/css/main.be244734.css",
-    "main.js": "/Project-CV-Application/static/js/main.8f9f15ef.js",
+    "main.css": "/Project-CV-Application/static/css/main.fd0b8761.css",
+    "main.js": "/Project-CV-Application/static/js/main.147e5e93.js",
     "static/js/703.0ca703fa.chunk.js": "/Project-CV-Application/static/js/703.0ca703fa.chunk.js",
     "static/js/560.0f25180d.chunk.js": "/Project-CV-Application/static/js/560.0f25180d.chunk.js",
     "static/media/github.svg": "/Project-CV-Application/static/media/github.49817034f7e49340f679afd18b8159da.svg",
@@ -11,13 +11,13 @@
     "static/media/phone.svg": "/Project-CV-Application/static/media/phone.065b7da8bc7460bae576cb324124a085.svg",
     "static/media/pencil.svg": "/Project-CV-Application/static/media/pencil.ab2f13ac7af6ab5fa1362cff8909cc06.svg",
     "index.html": "/Project-CV-Application/index.html",
-    "main.be244734.css.map": "/Project-CV-Application/static/css/main.be244734.css.map",
-    "main.8f9f15ef.js.map": "/Project-CV-Application/static/js/main.8f9f15ef.js.map",
+    "main.fd0b8761.css.map": "/Project-CV-Application/static/css/main.fd0b8761.css.map",
+    "main.147e5e93.js.map": "/Project-CV-Application/static/js/main.147e5e93.js.map",
     "703.0ca703fa.chunk.js.map": "/Project-CV-Application/static/js/703.0ca703fa.chunk.js.map",
     "560.0f25180d.chunk.js.map": "/Project-CV-Application/static/js/560.0f25180d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.be244734.css",
-    "static/js/main.8f9f15ef.js"
+    "static/css/main.fd0b8761.css",
+    "static/js/main.147e5e93.js"
   ]
 }
