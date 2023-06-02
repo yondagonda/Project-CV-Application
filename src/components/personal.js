@@ -5,7 +5,7 @@ import addressIcon from '../img/address.svg';
 
 export default function Personal(props) {
   const { emailInput, nameInput, headlineInput, phoneInput, addressInput } =
-    props.personalDetails;
+    props;
   return (
     <>
       <div className="title">{nameInput.text}</div>

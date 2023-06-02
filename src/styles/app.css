@@ -24,7 +24,7 @@ body {
   --fs-secondary: 0.75em;
   --fs-big: 1.94em;
   --fs-months: 0.81em;
-  --text-area-width: 300px;
+  --text-area-width: 330px;
 }
 
 footer {
@@ -99,7 +99,7 @@ footer {
     --fs-primary: 0.81em;
     --fs-big: 1.7em;
     --fs-months: 0.8em;
-    --text-area-width: 250px;
+    --text-area-width: 300px;
   }
   .line {
     margin: 0.9em 0em 0.9em 0em !important;
@@ -135,7 +135,7 @@ footer {
     --fs-primary: 0.65em;
     --fs-big: 1.4em;
     --fs-months: 0.8em;
-    --text-area-width: 200px;
+    --text-area-width: 230px;
   }
   .skills {
     gap: 0.2em !important;
@@ -177,7 +177,7 @@ footer {
     --fs-primary: 0.8em;
     --fs-big: 1.6em;
     --fs-months: 0.83em;
-    --text-area-width: 240px;
+    --text-area-width: 270px;
   }
   .creator {
     font-size: 0.7em;
@@ -199,7 +199,7 @@ footer {
     --fs-primary: 0.6em;
     --fs-big: 1.3em;
     --fs-months: 0.8em;
-    --text-area-width: 200px;
+    --text-area-width: 230px;
   }
   .line {
     margin: 0.67em 0em 0.67em 0em !important;
@@ -232,7 +232,7 @@ footer {
     --fs-primary: 0.45em;
     --fs-big: 1.1em;
     --fs-months: 5px;
-    --text-area-width: 150px;
+    --text-area-width: 170px;
   }
   .skills-section {
     padding-left: 1em !important;
@@ -244,7 +244,7 @@ footer {
     gap: 0.3em !important;
   }
   .top-level {
-    padding: 0.45em 0.5em 0.5em 0.5em !important;
+    padding: 0.3em 0.5em 0.5em 0.5em !important;
   }
   .preview-main {
     padding: 0.5em !important;
@@ -280,6 +280,7 @@ form {
 
 .preview-main {
   padding: 1em;
+  overflow: hidden;
 }
 
 .title {
@@ -287,12 +288,16 @@ form {
   font-size: var(--fs-big);
   word-break: break-word;
   padding: 0.4em 0.3em 0em 0.3em;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .headline {
   padding: 0em 0em 0em 0.5em;
   color: rgb(214, 212, 212);
   font-size: var(--fs-primary);
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .top-right {
@@ -392,6 +397,7 @@ textarea {
 .text-area {
   max-width: var(--text-area-width);
   overflow-wrap: break-word;
+  font-size: 0.95em;
 }
 
 .preview-main {
@@ -410,7 +416,7 @@ textarea {
 
 #skillInput {
   margin-bottom: 0.5em;
-  width: 60%;
+  width: 50%;
 }
 
 .add-skill {
@@ -522,6 +528,7 @@ textarea {
 
 .experiences {
   align-items: center;
+  word-break: break-word;
 }
 
 .autofill-area {
