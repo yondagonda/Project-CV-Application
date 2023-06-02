@@ -447,7 +447,7 @@ const App = () => {
                 id="positionTitle"
                 onChange={handleExperienceChange}
                 value={experienceInput.positionTitle.text}
-                maxLength={40}
+                maxLength={48}
               ></input>
               <div className="company-info">
                 <div className="company-divs">
@@ -457,7 +457,7 @@ const App = () => {
                     id="companyName"
                     onChange={handleExperienceChange}
                     value={experienceInput.companyName.text}
-                    maxLength={22}
+                    maxLength={24}
                   ></input>
                 </div>
                 <div className="company-divs">
@@ -467,7 +467,7 @@ const App = () => {
                     id="cityName"
                     onChange={handleExperienceChange}
                     value={experienceInput.cityName.text}
-                    maxLength={22}
+                    maxLength={24}
                   ></input>
                 </div>
               </div>

@@ -332,6 +332,11 @@ form {
   max-width: 100%;
 }
 
+.company-info {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 .greyed {
   color: rgb(88, 87, 87);
 }
@@ -379,6 +384,7 @@ form {
 .employment-dates {
   display: flex;
   font-size: var(--fs-months);
+  white-space: nowrap;
 }
 
 .list-of-experience {
