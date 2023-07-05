@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
 *,
 *::before,
@@ -71,6 +71,7 @@ footer {
   height: 926.2px;
   max-width: 654.5px;
   min-width: 654.4px;
+  margin-bottom: 5vh;
 }
 
 .top-level {
@@ -468,7 +469,6 @@ textarea {
   border-radius: 4px;
   padding: 0.1em 0.1em;
   color: black;
-  font-weight: bold;
   font-size: 0.75em;
 }
 
